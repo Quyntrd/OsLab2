@@ -5,14 +5,10 @@
 import os
 from typing import Dict
 
-# Путь к файлу с данными (инициализируется в main.py)
+# Путь к файлу с данными, по умолчанию 'data/shared.txt'
 SHARED_FILE = os.path.join(os.getcwd(), 'data', 'shared.txt')
 
-
 def read_all(path: str = SHARED_FILE) -> Dict[str, float]:
-    """
-    Считывает все строки формата key=value из файла в словарь.
-    """
     data: Dict[str, float] = {}
     if not os.path.exists(path):
         return data
@@ -27,9 +23,6 @@ def read_all(path: str = SHARED_FILE) -> Dict[str, float]:
 
 
 def write_all(data: Dict[str, float], path: str = SHARED_FILE) -> None:
-    """
-    Перезаписывает файл всеми парами key=value (каждая в своей строке).
-    """
     directory = os.path.dirname(path)
     os.makedirs(directory, exist_ok=True)
     with open(path, 'w', encoding='utf-8') as f:
